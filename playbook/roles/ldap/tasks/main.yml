@@ -1,0 +1,36 @@
+---
+- name: install packages
+  with_items: "{{ ldap_packages }}"
+  pkgng:
+    name: "{{ item.name }}"
+
+- name: enable slapd service
+  template:
+    src: slapd.j2
+    dest: /etc/rc.conf.d/slapd
+
+- name: keep the config
+  file:
+    path: /var/db/openldap-data/.keep
+    state: directory
+
+- name: install opendkim schema
+  template:
+    src: opendkim.schema.j2
+    dest: /usr/local/etc/openldap/schema/opendkim.schema
+
+- name: create consul-template directory for ldap
+  file:
+    path: "/usr/local/etc/consul-templates/{{ ldap_consul_template_prefix }}"
+    state: directory
+
+- name: copy ldap consul-template files
+  with_items: "{{ ldap_consul_templates }}"
+  copy:
+    src: "{{ item.filename }}"
+    dest: "{{ consul_template_root }}/{{ ldap_consul_template_prefix }}/{{ item.filename }}"
+
+- name: configure consul-template for ldap
+  template:
+    src: ldap.consul.j2
+    dest: /usr/local/etc/consul-template.d/ldap.conf
