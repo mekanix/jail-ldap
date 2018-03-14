@@ -7,3 +7,4 @@ playbook/roles/onelove-roles.freebsd-common/
 playbook/roles/onelove-roles.freebsd-consul-template/
 cbsd.conf
 vars.mk
+build/
