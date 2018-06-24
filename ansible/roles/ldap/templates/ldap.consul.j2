@@ -2,6 +2,6 @@
 template {
   source = "{{ consul_template_root }}/{{ ldap_consul_template_prefix }}/{{ item.filename }}"
   destination = "{{ item.destination }}"
-  command = "service slapd restart"
+  command = "sh -c 'service slapd restart || true'"
 }
 {% endfor %}

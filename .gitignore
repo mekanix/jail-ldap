@@ -1,10 +1,10 @@
 .provisioned
 *.retry
-playbook/group_vars/all
-playbook/inventory/inventory
-playbook/site.yml
-playbook/roles/onelove-roles.freebsd-common/
-playbook/roles/onelove-roles.freebsd-consul-template/
+ansible/group_vars/all
+ansible/inventory/inventory
+ansible/site.yml
+ansible/roles/onelove-roles.freebsd-common/
+ansible/roles/onelove-roles.freebsd-consul-template/
 cbsd.conf
 vars.mk
 build/
