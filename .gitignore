@@ -5,6 +5,6 @@ ansible/inventory/inventory
 ansible/site.yml
 ansible/roles/onelove-roles.freebsd-common/
 ansible/roles/onelove-roles.freebsd-consul-template/
+build/
 cbsd.conf
 vars.mk
-build/
