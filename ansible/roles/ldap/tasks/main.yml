@@ -3,6 +3,8 @@
   with_items: "{{ ldap_packages }}"
   pkgng:
     name: "{{ item.name }}"
+  notify:
+    - restart ldap
 
 - name: enable slapd service
   template:
@@ -18,19 +20,29 @@
   template:
     src: opendkim.schema.j2
     dest: /usr/local/etc/openldap/schema/opendkim.schema
+  notify:
+    - restart ldap
 
-- name: create consul-template directory for ldap
-  file:
-    path: "/usr/local/etc/consul-templates/{{ ldap_consul_template_prefix }}"
-    state: directory
-
-- name: copy ldap consul-template files
-  with_items: "{{ ldap_consul_templates }}"
-  copy:
-    src: "{{ item.filename }}"
-    dest: "{{ consul_template_root }}/{{ ldap_consul_template_prefix }}/{{ item.filename }}"
-
-- name: configure consul-template for ldap
+- name: configure ldap server
+  with_items: "{{ ldap_templates }}"
   template:
-    src: ldap.consul.j2
-    dest: /usr/local/etc/consul-template.d/ldap.conf
+    src: "{{ item.filename }}.tpl"
+    dest: "{{ item.destination }}/{{ item.filename }}"
+  notify:
+    - restart ldap
+
+- name: check if slapd-secret.conf exists
+  stat:
+    path: /usr/local/etc/openldap/slapd-secret.conf
+  register: secret_result
+
+- name: create slapd-secret.conf if it does not exists
+  template:
+    src: slapd-secret.conf.j2
+    dest: /usr/local/etc/openldap/slapd-secret.conf
+    mode: 0600
+    owner: ldap
+    group: ldap
+  when: secret_result.stat.exists == False
+  notify:
+    - restart ldap
