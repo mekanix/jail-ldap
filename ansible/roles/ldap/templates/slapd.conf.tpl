@@ -23,11 +23,16 @@ modulepath	/usr/local/libexec/openldap
 moduleload	back_mdb
 # moduleload	back_ldap
 
+TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
+TLSCertificateFile /usr/local/etc/openldap/certs/fullchain.pem
+TLSCertificateKeyFile /usr/local/etc/openldap/certs/privkey.pem
+
 # Sample security restrictions
 #	Require integrity protection (prevent hijacking)
 #	Require 112-bit (3DES or better) encryption for updates
 #	Require 63-bit encryption for simple bind
 # security ssf=1 update_ssf=112 simple_bind=64
+security ssf=128 tls=1
 
 # Sample access control policy:
 #	Root DSE: allow anyone to read it

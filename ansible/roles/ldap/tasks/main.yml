@@ -11,6 +11,30 @@
     src: slapd.j2
     dest: /etc/rc.conf.d/slapd
 
+- name: fix slapd service file
+  template:
+    src: slapd-service.j2
+    dest: /usr/local/etc/rc.d/slapd
+
+- name: create cert dir
+  file:
+    path: /usr/local/etc/openldap/certs
+    state: directory
+    mode: 0700
+    owner: ldap
+    group: ldap
+
+- name: install cert updater
+  copy:
+    src: update_certs.sh
+    dest: /usr/local/bin/update_certs.sh
+    mode: 0755
+
+- name: convert cert from letsencrypt
+  command: /usr/local/bin/update_certs.sh "{{ ldap_domain }}"
+  args:
+    creates: "/usr/local/etc/openldap/certs/privkey.pem"
+
 - name: keep the config
   file:
     path: /var/db/openldap-data/.keep

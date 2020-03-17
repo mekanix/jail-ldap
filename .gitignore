@@ -7,4 +7,6 @@ ansible/roles/onelove-roles.freebsd-common/
 ansible/roles/onelove-roles.freebsd-consul-template/
 build/
 cbsd.conf
+project.mk
+templates/fstab
 vars.mk
