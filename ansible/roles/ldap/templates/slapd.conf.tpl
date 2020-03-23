@@ -76,3 +76,4 @@ directory	/var/db/openldap-data
 # Indices to maintain
 index	objectClass	eq
 include		/usr/local/etc/openldap/slapd-secret.conf
+include		/usr/local/etc/openldap/slapd-multimaster.conf

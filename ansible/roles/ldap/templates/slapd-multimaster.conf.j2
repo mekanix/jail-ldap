@@ -1,0 +1,15 @@
+#ServerID        1 "ldap://{{ service }}.{{ ldap_domain }}"
+#moduleload      syncprov
+#overlay         syncprov
+#syncprov-checkpoint     10 1
+#syncprov-sessionlog     100
+#syncrepl        rid=1
+#                provider="ldap://otherldap.{{ ldap_domain }}"
+#                type=refreshAndPersist
+#                schemachecking=on
+#                retry="5 10 30 +"
+#                searchbase="dc=ldap"
+#                bindmethod=simple
+#                binddn="cn=root,dc=ldap"
+#                credentials="Sekrit"
+#MirrorMode on

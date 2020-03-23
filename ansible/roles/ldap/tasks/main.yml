@@ -70,3 +70,19 @@
   when: secret_result.stat.exists == False
   notify:
     - restart ldap
+
+- name: check if slapd-multimaster.conf exists
+  stat:
+    path: /usr/local/etc/openldap/slapd-multimaster.conf
+  register: multimaster_result
+
+- name: create slapd-multimaster.conf if it does not exists
+  template:
+    src: slapd-multimaster.conf.j2
+    dest: /usr/local/etc/openldap/slapd-multimaster.conf
+    mode: 0600
+    owner: ldap
+    group: ldap
+  when: multimaster_result.stat.exists == False
+  notify:
+    - restart ldap
