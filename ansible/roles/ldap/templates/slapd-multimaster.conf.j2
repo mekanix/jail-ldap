@@ -1,9 +1,9 @@
-#ServerID        1 "ldap://{{ service }}.{{ ldap_domain }}"
+#ServerID        {{ rid }} "ldap://{{ service }}.{{ ldap_domain }}"
 #moduleload      syncprov
 #overlay         syncprov
 #syncprov-checkpoint     10 1
 #syncprov-sessionlog     100
-#syncrepl        rid=1
+#syncrepl        rid={{ rid }}
 #                provider="ldap://otherldap.{{ ldap_domain }}"
 #                type=refreshAndPersist
 #                schemachecking=on

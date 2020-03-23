@@ -1,4 +1,8 @@
-SERVICE = ldap
+.if exists(rid.mk)
+.include <rid.mk>
+.endif
+
+SERVICE = ldap${RID}
 REGGAE_PATH = /usr/local/share/reggae
 CBSD_WORKDIR != sysrc -n cbsd_workdir
 PORTS = 389

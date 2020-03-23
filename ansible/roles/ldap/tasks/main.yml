@@ -76,6 +76,10 @@
     path: /usr/local/etc/openldap/slapd-multimaster.conf
   register: multimaster_result
 
+- name: generate random rid
+  set_fact:
+    rid: "{{ 100 | random }}"
+
 - name: create slapd-multimaster.conf if it does not exists
   template:
     src: slapd-multimaster.conf.j2

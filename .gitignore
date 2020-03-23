@@ -8,5 +8,6 @@ ansible/roles/onelove-roles.freebsd-consul-template/
 build/
 cbsd.conf
 project.mk
+rid.mk
 templates/fstab
 vars.mk
