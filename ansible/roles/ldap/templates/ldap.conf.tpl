@@ -8,7 +8,7 @@
 TLS_REQCERT never
 TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
 BASE	dc=ldap
-#URI	ldap://ldap.example.com ldap://ldap-master.example.com:666
+URI	ldap://{{ service }}.{{ ldap_domain }}
 
 #SIZELIMIT	12
 #TIMELIMIT	15
