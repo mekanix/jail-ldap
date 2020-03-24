@@ -9,6 +9,9 @@ PORTS = 389
 
 post_setup_ansible:
 	@echo "ldap_domain: ${FQDN}" >>ansible/group_vars/all
+.if defined(RID)
+	@echo "rid: ${RID}" >>ansible/group_vars/all
+.endif
 
 post_create:
 .if !exists(${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh)

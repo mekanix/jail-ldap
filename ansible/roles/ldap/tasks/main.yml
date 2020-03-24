@@ -79,6 +79,7 @@
 - name: generate random rid
   set_fact:
     rid: "{{ 100 | random }}"
+  when: rid is not defined
 
 - name: create slapd-multimaster.conf if it does not exists
   template:
