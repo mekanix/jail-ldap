@@ -19,7 +19,12 @@ post_create:
 		-e "s:DOMAINFQDN:${FQDN}:g" \
 		templates/unbound.sh.tpl >/tmp/unbound.sh
 	@sudo mv /tmp/unbound.sh ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
-	@chmod 755 ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
+	@sudo chmod 755 ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
+	@sudo chown root:wheel ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
+.endif
+.if !exists(${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh)
+	@sudo cp templates/cleanup-unbound.sh.tpl ${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh
+	@sudo chmod 755 ${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh
 .endif
 
 .include <${REGGAE_PATH}/mk/service.mk>
