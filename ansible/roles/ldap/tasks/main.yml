@@ -10,11 +10,15 @@
   template:
     src: slapd.j2
     dest: /etc/rc.conf.d/slapd
+  notify:
+    - restart ldap
 
 - name: fix slapd service file
   template:
     src: slapd-service.j2
     dest: /usr/local/etc/rc.d/slapd
+  notify:
+    - restart ldap
 
 - name: create cert dir
   file:
@@ -34,6 +38,8 @@
   command: /usr/local/bin/update_certs.sh "{{ ldap_domain }}"
   args:
     creates: "/usr/local/etc/openldap/certs/privkey.pem"
+  notify:
+    - restart ldap
 
 - name: keep the config
   file:
