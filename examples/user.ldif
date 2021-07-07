@@ -1,0 +1,11 @@
+dn: uid=USER,ou=DOMAIN,dc=account,dc=ldap
+objectClass: pilotPerson
+objectClass: posixAccount
+cn: FIRST LAST
+sn: LAST
+uidNumber: 65534
+gidNumber: 65534
+homeDirectory: /var/mail/domains/DOMAIN/USER
+mail: USER@DOMAIN
+userClass: jabber
+userClass: mail
