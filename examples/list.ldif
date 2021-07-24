@@ -1,7 +1,11 @@
-dn: uid=USER,ou=DOMAIN,dc=lists,dc=ldap
-objectClass: inetOrgPerson
-cn: alias
-sn: alias
-mail: USER1@ADDRESS
-mail: USER2@ADDRESS
-mail: USER3@ADDRESS
+dn: uid=LIST,ou=DOMAIN,dc=account,dc=ldap
+objectClass: pilotPerson
+objectClass: posixAccount
+cn: List LIST
+sn: LIST
+uidNumber: 65534
+gidNumber: 65534
+homeDirectory: /var/mail/domains/DOMAIN/LIST
+textEncodedORAddress: mlmmj:DOMAIN/LIST
+otherMailbox: LIST@DOMAIN
+userClass: mail

@@ -1,9 +1,7 @@
 dn: dc=ldap
 objectClass: dcObject
 objectClass: organization
-o: ldap
 
 dn: dc=account,dc=ldap
 objectClass: dcObject
 objectClass: organization
-o: account
