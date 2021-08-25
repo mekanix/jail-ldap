@@ -1,0 +1,24 @@
+---
+- name: create pkg repo dir
+  file:
+    path: /usr/local/etc/pkg/repos
+    state: directory
+
+- name: create ssl certs directory
+  file:
+    path: /usr/local/etc/ssl/certs
+    state: directory
+
+- name: get tilda certificate
+  get_url:
+    url: https://pkg.tilda.center/certs/pkg.tilda.center.cert
+    dest: /usr/local/etc/ssl/certs/pkg.tilda.center.cert
+    mode: 0644
+
+- name: configure tilda repository
+  template:
+    src: tilda.conf.j2
+    dest: /usr/local/etc/pkg/repos/tilda.conf
+
+- name: update pkg repos
+  command: pkg update

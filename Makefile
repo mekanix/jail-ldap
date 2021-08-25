@@ -27,4 +27,7 @@ post_create:
 	@sudo chmod 755 ${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh
 .endif
 
+post_up:
+	@sudo env jname=${SERVICE} ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
+
 .include <${REGGAE_PATH}/mk/service.mk>
