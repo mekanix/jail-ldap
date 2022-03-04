@@ -7,6 +7,7 @@ include		/usr/local/etc/openldap/schema/cosine.schema
 include		/usr/local/etc/openldap/schema/inetorgperson.schema
 include		/usr/local/etc/openldap/schema/nis.schema
 include		/usr/local/etc/openldap/schema/opendkim.schema
+include		/usr/local/etc/openldap/schema/pmi.schema
 
 
 # Define global ACLs to disable default read access.

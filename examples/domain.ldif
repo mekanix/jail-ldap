@@ -1,2 +1,5 @@
 dn: ou=DOMAIN,dc=account,dc=ldap
 objectClass: organizationalUnit
+objectClass: pmiDelegationPath
+delegationPath: /etc/certs/DOMAIN/privkey.pem
+delegationPath: /etc/certs/DOMAIN/fullchain.pem
