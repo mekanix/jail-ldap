@@ -4,6 +4,8 @@
 
 SERVICE = ldap${RID}
 REGGAE_PATH = /usr/local/share/reggae
+BACKEND != reggae get-config BACKEND
+BASE_WORKDIR != reggae get-config BASE_WORKDIR
 CBSD_WORKDIR != sysrc -n cbsd_workdir
 PORTS = 389
 
@@ -12,22 +14,5 @@ post_setup_ansible:
 .if defined(RID)
 	@echo "rid: ${RID}" >>ansible/group_vars/all
 .endif
-
-post_create:
-.if !exists(${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh)
-	@sed \
-		-e "s:DOMAINFQDN:${FQDN}:g" \
-		templates/unbound.sh.tpl >/tmp/unbound.sh
-	@sudo mv /tmp/unbound.sh ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
-	@sudo chmod 755 ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
-	@sudo chown root:wheel ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
-.endif
-.if !exists(${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh)
-	@sudo cp templates/cleanup-unbound.sh.tpl ${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh
-	@sudo chmod 755 ${CBSD_WORKDIR}/jails-system/${SERVICE}/remove.d/cleanup-unbound.sh
-.endif
-
-post_up:
-	@sudo env jname=${SERVICE} ${CBSD_WORKDIR}/jails-system/${SERVICE}/master_poststart.d/unbound.sh
 
 .include <${REGGAE_PATH}/mk/service.mk>

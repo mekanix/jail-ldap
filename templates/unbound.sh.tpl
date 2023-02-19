@@ -6,7 +6,6 @@ DOMAIN=`reggae get-config DOMAIN`
 JAILFQDN="${jname}.${DOMAIN}"
 FQDN="${jname}.DOMAINFQDN"
 IP=`/usr/bin/drill ${JAILFQDN} | grep "^${JAILFQDN}\." | awk '{print $5}'`
-JAILFQDN=${jname}.LDAPFQDN
 UNBOUND_ROOT="/var/unbound"
 ZONE_FILE="${UNBOUND_ROOT}/zones/${jname}.zone"
 CONF_FILE="${UNBOUND_ROOT}/conf.d/${jname}.conf"

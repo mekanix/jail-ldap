@@ -1,6 +1,6 @@
 ---
 ldap_packages:
-  - name: openldap24-server
+  - name: openldap26-server
 
 ldap_templates:
   - destination: /usr/local/etc/openldap
