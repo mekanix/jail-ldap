@@ -13,13 +13,6 @@
   notify:
     - restart ldap
 
-- name: fix slapd service file
-  template:
-    src: slapd-service.j2
-    dest: /usr/local/etc/rc.d/slapd
-  notify:
-    - restart ldap
-
 - name: create cert dir
   file:
     path: /usr/local/etc/openldap/certs
@@ -52,6 +45,10 @@
     dest: /usr/local/etc/openldap/schema/opendkim.schema
   notify:
     - restart ldap
+
+- name: get hostname
+  shell: hostname
+  register: hostname_result
 
 - name: configure ldap server
   with_items: "{{ ldap_templates }}"

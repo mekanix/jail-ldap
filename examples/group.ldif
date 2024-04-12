@@ -1,0 +1,4 @@
+dn: cn=GROUP,dc=group,dc=ldap
+objectClass: groupOfNames
+cn: GROUP
+member: uid=USER,ou=DOMAIN,dc=account,dc=ldap

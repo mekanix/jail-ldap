@@ -22,7 +22,11 @@ argsfile	/var/run/openldap/slapd.args
 # Load dynamic backend modules:
 modulepath	/usr/local/libexec/openldap
 moduleload	back_mdb
+moduleload	memberof
 # moduleload	back_ldap
+
+overlay		memberof
+memberof-refint	TRUE
 
 TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
 TLSCertificateFile /usr/local/etc/openldap/certs/fullchain.pem
@@ -75,6 +79,6 @@ rootdn		"cn=root,dc=ldap"
 # Mode 700 recommended.
 directory	/var/db/openldap-data
 # Indices to maintain
-index	objectClass	eq
+index	objectClass,mail	eq
 include		/usr/local/etc/openldap/slapd-secret.conf
 include		/usr/local/etc/openldap/slapd-multimaster.conf

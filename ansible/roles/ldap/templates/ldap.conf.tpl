@@ -9,7 +9,7 @@ TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
 TLSCertificateFile /usr/local/etc/openldap/certs/fullchain.pem
 TLSCertificateKeyFile /usr/local/etc/openldap/certs/privkey.pem
 BASE	dc=ldap
-URI	ldap://{{ service }}.{{ ldap_domain }}
+URI	ldap://{{ hostname_result.stdout }}
 
 #SIZELIMIT	12
 #TIMELIMIT	15

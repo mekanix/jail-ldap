@@ -1,11 +1,10 @@
 dn: uid=LIST,ou=DOMAIN,dc=account,dc=ldap
 objectClass: pilotPerson
 objectClass: posixAccount
-cn: List LIST
+cn: LIST
 sn: LIST
 uidNumber: 65534
 gidNumber: 65534
 homeDirectory: /var/mail/domains/DOMAIN/LIST
 textEncodedORAddress: mlmmj:DOMAIN/LIST
 otherMailbox: LIST@DOMAIN
-userClass: mail

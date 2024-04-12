@@ -1,9 +1,13 @@
 dn: dc=ldap
-objectClass: dcObject
-objectClass: organization
-o: ldap
+objectClass: domain
 
 dn: dc=account,dc=ldap
-objectClass: dcObject
-objectClass: organization
-o: account
+objectClass: domain
+
+dn: cn=enabled,dc=account,dc=ldap
+objectClass: groupOfNames
+cn: enabled
+member: ou=DOMAIN,dc=account,dc=ldap
+
+dn: dc=group,dc=ldap
+objectClass: domain
