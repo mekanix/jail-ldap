@@ -25,8 +25,10 @@ moduleload	back_mdb
 moduleload	memberof
 # moduleload	back_ldap
 
-overlay		memberof
-memberof-refint	TRUE
+overlay			memberof
+memberof-group-oc	groupOfUniqueNames
+memberof-member-ad	uniqueMember
+memberof-refint		TRUE
 
 TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
 TLSCertificateFile /usr/local/etc/openldap/certs/fullchain.pem

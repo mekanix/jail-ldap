@@ -1,4 +1,4 @@
 dn: cn=GROUP,dc=group,dc=ldap
-objectClass: groupOfNames
+objectClass: groupOfUniqueNames
 cn: GROUP
-member: uid=USER,ou=DOMAIN,dc=account,dc=ldap
+uniqueMember: uid=USER,ou=DOMAIN,dc=account,dc=ldap
