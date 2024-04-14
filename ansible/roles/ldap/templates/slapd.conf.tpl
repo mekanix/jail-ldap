@@ -58,7 +58,7 @@ access to attrs=userPassword
 access to *
   by self write
   by users read
-  by anonymous read
+  by anonymous auth
 
 # if no access controls are present, the default policy
 # allows anyone and everyone to read anything but restricts

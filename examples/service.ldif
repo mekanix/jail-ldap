@@ -1,0 +1,5 @@
+dn: cn=SERVICE,dc=service,dc=ldap
+objectClass: person
+cn: SERVICE
+sn: service
+description: DESCRIPTION

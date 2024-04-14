@@ -11,3 +11,6 @@ member: ou=DOMAIN,dc=account,dc=ldap
 
 dn: dc=group,dc=ldap
 objectClass: domain
+
+dn: dc=service,dc=ldap
+objectClass: domain
