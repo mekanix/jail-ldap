@@ -4,10 +4,15 @@ objectClass: domain
 dn: dc=account,dc=ldap
 objectClass: domain
 
+dn: ou=DOMAIN,dc=account,dc=ldap
+objectClass: organizationalUnit
+objectClass: pmiDelegationPath
+delegationPath: /etc/certs/DOMAIN/privkey.pem
+delegationPath: /etc/certs/DOMAIN/fullchain.pem
+
 dn: cn=enabled,dc=account,dc=ldap
-objectClass: groupOfNames
-cn: enabled
-member: ou=DOMAIN,dc=account,dc=ldap
+objectClass: groupOfUniqueNames
+uniqueMember: ou=DOMAIN,dc=account,dc=ldap
 
 dn: dc=group,dc=ldap
 objectClass: domain
