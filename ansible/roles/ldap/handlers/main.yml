@@ -1,4 +1,12 @@
 ---
+- name: generate slapd.d
+  become: true
+  become_user: ldap
+  shell:
+    cmd: slaptest -f slapd.conf -F slapd.d
+    chdir: /usr/local/etc/openldap
+    creates: /usr/local/etc/openldap/slapd.d
+
 - name: restart ldap
   service:
     name: slapd

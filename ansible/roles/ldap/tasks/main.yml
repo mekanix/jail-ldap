@@ -94,3 +94,13 @@
   when: multimaster_result.stat.exists == False
   notify:
     - restart ldap
+
+- name: ensure slapd.d exists
+  file:
+    name: "/usr/local/etc/openldap/slapd.d"
+    state: directory
+    owner: ldap
+    group: ldap
+  notify:
+    - generate slapd.d
+    - restart ldap

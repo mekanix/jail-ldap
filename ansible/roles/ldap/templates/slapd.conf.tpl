@@ -23,12 +23,17 @@ argsfile	/var/run/openldap/slapd.args
 modulepath	/usr/local/libexec/openldap
 moduleload	back_mdb
 moduleload	memberof
+moduleload	refint
 # moduleload	back_ldap
 
 overlay			memberof
 memberof-group-oc	groupOfUniqueNames
 memberof-member-ad	uniqueMember
+memberof-memberof-ad	memberOf
 memberof-refint		TRUE
+
+overlay			refint
+refint_attributes	memberOf uniqueMember
 
 TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
 TLSCertificateFile /usr/local/etc/openldap/certs/fullchain.pem
@@ -69,6 +74,10 @@ access to *
 #######################################################################
 # MDB database definitions
 #######################################################################
+
+database config
+rootdn "cn=root,cn=config"
+include		/usr/local/etc/openldap/slapd-secret.conf
 
 database	mdb
 suffix		"dc=ldap"
