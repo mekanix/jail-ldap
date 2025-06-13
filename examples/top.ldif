@@ -1,6 +1,10 @@
 dn: dc=ldap
 objectClass: domain
 
+dn: cn=uidnext,dc=ldap
+objectClass: uidNext
+uidNumber: 10001
+
 dn: dc=account,dc=ldap
 objectClass: domain
 
@@ -10,12 +14,24 @@ objectClass: pmiDelegationPath
 delegationPath: /etc/certs/DOMAIN/privkey.pem
 delegationPath: /etc/certs/DOMAIN/fullchain.pem
 
-dn: cn=enabled,dc=account,dc=ldap
-objectClass: groupOfUniqueNames
-uniqueMember: ou=DOMAIN,dc=account,dc=ldap
-
 dn: dc=group,dc=ldap
 objectClass: domain
 
 dn: dc=service,dc=ldap
 objectClass: domain
+
+dn: uid=admin,ou=DOMAIN,dc=account,dc=ldap
+objectClass: pilotPerson
+objectClass: posixAccount
+cn: Admin
+sn: User
+uidNumber: 10000
+gidNumber: 10000
+homeDirectory: /var/mail/domains/DOMAIN/admin
+mail: admin@DOMAIN
+userClass: enabled
+
+dn: cn=admin,dc=group,dc=ldap
+objectClass: groupOfUniqueNames
+cn: admin
+uniqueMember: uid=admin,ou=DOMAIN,dc=account,dc=ldap

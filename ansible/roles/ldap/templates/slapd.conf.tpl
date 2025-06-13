@@ -7,6 +7,7 @@ include		/usr/local/etc/openldap/schema/cosine.schema
 include		/usr/local/etc/openldap/schema/inetorgperson.schema
 include		/usr/local/etc/openldap/schema/nis.schema
 include		/usr/local/etc/openldap/schema/opendkim.schema
+include		/usr/local/etc/openldap/schema/idnext.schema
 include		/usr/local/etc/openldap/schema/pmi.schema
 
 
@@ -23,17 +24,17 @@ argsfile	/var/run/openldap/slapd.args
 modulepath	/usr/local/libexec/openldap
 moduleload	back_mdb
 moduleload	memberof
-moduleload	refint
+# moduleload	refint
 # moduleload	back_ldap
 
 overlay			memberof
 memberof-group-oc	groupOfUniqueNames
 memberof-member-ad	uniqueMember
 memberof-memberof-ad	memberOf
-memberof-refint		TRUE
+#memberof-refint		TRUE
 
-overlay			refint
-refint_attributes	memberOf uniqueMember
+#overlay			refint
+#refint_attributes	memberOf uniqueMember
 
 TLSCACertificateFile /usr/local/etc/openldap/certs/chain.pem
 TLSCertificateFile /usr/local/etc/openldap/certs/fullchain.pem
@@ -46,30 +47,7 @@ TLSCertificateKeyFile /usr/local/etc/openldap/certs/privkey.pem
 # security ssf=1 update_ssf=112 simple_bind=64
 security ssf=128 tls=1
 
-# Sample access control policy:
-#	Root DSE: allow anyone to read it
-#	Subschema (sub)entry DSE: allow anyone to read it
-#	Other DSEs:
-#		Allow self write access
-#		Allow authenticated users read access
-#		Allow anonymous users to authenticate
-#	Directives needed to implement policy:
-# access to dn.base="" by * read
-# access to dn.base="cn=Subschema" by * read
-access to attrs=userPassword
-  by self write
-  by anonymous auth
-
-access to *
-  by self write
-  by users read
-  by anonymous auth
-
-# if no access controls are present, the default policy
-# allows anyone and everyone to read anything but restricts
-# updates to rootdn.  (e.g., "access to * by * read")
-#
-# rootdn can always read and write EVERYTHING!
+include		/usr/local/etc/openldap/slapd-acl.conf
 
 #######################################################################
 # MDB database definitions

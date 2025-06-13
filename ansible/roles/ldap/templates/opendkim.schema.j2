@@ -9,38 +9,38 @@
 # attributes: 1.3.6.1.4.1.29426.2.2.1
 # classes:    1.3.6.1.4.1.29426.2.2.2
 #
-attributetype ( 1.3.6.1.4.1.29426.2.2.1.1
+attributeType ( 1.3.6.1.4.1.29426.2.2.1.1
 	NAME 'DKIMSelectorData'
 	DESC 'Selector name associated with DKIM signing key'
 	EQUALITY caseExactIA5Match
 	SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
 
-attributetype ( 1.3.6.1.4.1.29426.2.2.1.2
+attributeType ( 1.3.6.1.4.1.29426.2.2.1.2
 	NAME 'DKIMKeyData'
 	DESC 'DKIM signing key'
 	EQUALITY caseExactIA5Match
 	SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
 
-attributetype ( 1.3.6.1.4.1.29426.2.2.1.3
+attributeType ( 1.3.6.1.4.1.29426.2.2.1.3
 	NAME 'DKIMIdentity'
 	DESC 'The Agent or User Identifier (AUID)'
 	EQUALITY caseExactIA5Match
 	SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
 
-attributetype ( 1.3.6.1.4.1.29426.2.2.1.4
+attributeType ( 1.3.6.1.4.1.29426.2.2.1.4
 	NAME 'DKIMDomain'
 	DESC 'DKIM sender domain'
 	EQUALITY caseExactIA5Match
 	SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
 
-objectclass ( 1.3.6.1.4.1.29426.2.2.2.1
+objectClass ( 1.3.6.1.4.1.29426.2.2.2.1
 	NAME 'DKIMKey' AUXILIARY
 	DESC 'DKIM Key container'
 	SUP top
 	MAY ( DKIMIdentity $ DKIMDomain )
 	MUST ( DKIMSelectorData $ DKIMKeyData ))
 
-objectclass ( 1.3.6.1.4.1.29426.2.2.2.2
+objectClass ( 1.3.6.1.4.1.29426.2.2.2.2
 	NAME 'DKIMSelector' AUXILIARY
 	DESC 'DKIM Selector container'
 	SUP top

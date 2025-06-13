@@ -53,3 +53,32 @@ to another server.
 
 Certificates are going to be refreshed via `letsencrypt` jail and cron on host
 will put certificates in proper directories.
+
+To search LDAP directory without being asked for password:
+
+```
+ldapsearch -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap
+```
+
+When adding new account, generate uid/gid number by getting current value of
+uidNumber:
+
+```
+ldapsearch -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap -LLL '(objectClass=uidNext)' uidNumber
+```
+
+Then create increment.ldif:
+
+```ldap
+dn: cn=uidnext,dc=ldap
+changetype: modify
+increment: uidNumber
+uidNumber: 1
+```
+
+And finally apply it with
+
+```
+ldapmodify -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap -f increment.ldif
+
+```

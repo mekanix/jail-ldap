@@ -8,3 +8,10 @@ ldap_templates:
 
   - destination: /usr/local/etc/openldap
     filename: ldap.conf
+
+ldap_schemas:
+  - destination: /usr/local/etc/openldap/schema
+    filename: opendkim.schema
+
+  - destination: /usr/local/etc/openldap/schema
+    filename: idnext.schema

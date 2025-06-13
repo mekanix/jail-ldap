@@ -39,10 +39,11 @@
     path: /var/db/openldap-data/.keep
     state: directory
 
-- name: install opendkim schema
+- name: install extra schemas
+  with_items: "{{ ldap_schemas }}"
   template:
-    src: opendkim.schema.j2
-    dest: /usr/local/etc/openldap/schema/opendkim.schema
+    src: "{{ item.filename }}.j2"
+    dest: "{{ item.destination }}/{{ item.filename }}"
   notify:
     - restart ldap
 
@@ -55,6 +56,22 @@
   template:
     src: "{{ item.filename }}.tpl"
     dest: "{{ item.destination }}/{{ item.filename }}"
+  notify:
+    - restart ldap
+
+- name: check if slapd-acl.conf exists
+  stat:
+    path: /usr/local/etc/openldap/slapd-acl.conf
+  register: acl_result
+
+- name: create slapd-acl.conf if it does not exists
+  template:
+    src: slapd-acl.conf.j2
+    dest: /usr/local/etc/openldap/slapd-acl.conf
+    mode: 0600
+    owner: ldap
+    group: ldap
+  when: acl_result.stat.exists == False
   notify:
     - restart ldap
 
@@ -95,12 +112,12 @@
   notify:
     - restart ldap
 
-- name: ensure slapd.d exists
-  file:
-    name: "/usr/local/etc/openldap/slapd.d"
-    state: directory
-    owner: ldap
-    group: ldap
-  notify:
-    - generate slapd.d
-    - restart ldap
+# - name: ensure slapd.d exists
+#   file:
+#     name: "/usr/local/etc/openldap/slapd.d"
+#     state: directory
+#     owner: ldap
+#     group: ldap
+#   notify:
+#     - generate slapd.d
+#     - restart ldap

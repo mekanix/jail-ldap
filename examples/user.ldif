@@ -3,8 +3,8 @@ objectClass: pilotPerson
 objectClass: posixAccount
 cn: FIRST
 sn: LAST
-uidNumber: 65534
-gidNumber: 65534
+uidNumber: 10000
+gidNumber: 10000
 homeDirectory: /var/mail/domains/DOMAIN/USER
 mail: USER@DOMAIN
 userClass: enabled
