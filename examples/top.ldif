@@ -5,6 +5,10 @@ dn: cn=uidnext,dc=ldap
 objectClass: uidNext
 uidNumber: 10001
 
+dn: cn=gidnext,dc=ldap
+objectClass: gidNext
+gidNumber: 10001
+
 dn: dc=account,dc=ldap
 objectClass: domain
 
@@ -35,3 +39,18 @@ dn: cn=admin,dc=group,dc=ldap
 objectClass: groupOfUniqueNames
 cn: admin
 uniqueMember: uid=admin,ou=DOMAIN,dc=account,dc=ldap
+
+dn: ou=DOMAIN,dc=group,dc=ldap
+objectClass: organizationalUnit
+
+dn: cn=admin,ou=DOMAIN,dc=group,dc=ldap
+objectClass: posixGroup
+cn: admin
+gidNumber: 10000
+memberUid: 10000
+
+dn: cn=freenit,dc=service,dc=ldap
+objectClass: person
+cn: Freenit
+sn: Service
+description: Freenit

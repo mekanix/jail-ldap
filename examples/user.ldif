@@ -8,3 +8,9 @@ gidNumber: 10000
 homeDirectory: /var/mail/domains/DOMAIN/USER
 mail: USER@DOMAIN
 userClass: enabled
+
+dn: cn=USER,ou=DOMAIN,dc=group,dc=ldap
+objectClass: posixGroup
+cn: USER
+gidNumber: 10000
+memberUid: 10000

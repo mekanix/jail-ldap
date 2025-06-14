@@ -68,6 +68,6 @@ rootdn		"cn=root,dc=ldap"
 # Mode 700 recommended.
 directory	/var/db/openldap-data
 # Indices to maintain
-index	objectClass,mail	eq
+index	objectClass,mail,uidNumber,gidNumber,cn,uid	eq
 include		/usr/local/etc/openldap/slapd-secret.conf
 include		/usr/local/etc/openldap/slapd-multimaster.conf
