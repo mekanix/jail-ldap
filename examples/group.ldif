@@ -1,4 +1,5 @@
-dn: cn=GROUP,dc=group,dc=ldap
-objectClass: groupOfUniqueNames
+dn: cn=GROUP,ou=DOMAIN,dc=group,dc=ldap
+objectClass: posixGroup
 cn: GROUP
-uniqueMember: uid=USER,ou=DOMAIN,dc=account,dc=ldap
+gidNumber: 10000
+memberUid: 10000

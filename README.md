@@ -57,14 +57,14 @@ will put certificates in proper directories.
 To search LDAP directory without being asked for password:
 
 ```
-ldapsearch -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap
+ldapsearch -LLL -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap
 ```
 
 When adding new account, generate uid/gid number by getting current value of
 uidNumber:
 
 ```
-ldapsearch -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap -LLL '(objectClass=uidNext)' uidNumber
+ldapsearch -LLL -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap -LLL '(objectClass=uidNext)' uidNumber
 ```
 
 Then create increment.ldif:
