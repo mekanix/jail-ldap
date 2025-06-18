@@ -82,3 +82,21 @@ And finally apply it with
 ldapmodify -x -Z -w `cut -f 2 -d '"' /usr/local/etc/openldap/slapd-secret.conf` -D cn=root,dc=ldap -f increment.ldif
 
 ```
+
+To add user to group
+
+```ldap
+dn: cn=admin,ou=sysit.solutions,dc=group,dc=ldap
+changetype: modify
+add: memberUid
+memberUid: 10001
+```
+
+To add user to role
+
+```ldap
+dn: cn=admin,dc=group,dc=ldap
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=user,ou=sysit.solutions,dc=account,dc=ldap
+```
