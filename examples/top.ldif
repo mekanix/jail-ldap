@@ -33,12 +33,8 @@ uidNumber: 10000
 gidNumber: 10000
 homeDirectory: /var/mail/domains/DOMAIN/admin
 mail: admin@DOMAIN
-userClass: enabled
-
-dn: cn=admin,dc=group,dc=ldap
-objectClass: groupOfUniqueNames
-cn: admin
-uniqueMember: uid=admin,ou=DOMAIN,dc=account,dc=ldap
+userClass: active
+userClass: admin
 
 dn: ou=DOMAIN,dc=group,dc=ldap
 objectClass: organizationalUnit
@@ -54,3 +50,9 @@ objectClass: person
 cn: Freenit
 sn: Service
 description: Freenit
+
+dn: cn=admin,dc=group,dc=ldap
+objectClass: groupOfUniqueNames
+cn: admin
+uniqueMember: uid=admin,ou=DOMAIN,dc=account,dc=ldap
+uniqueMember: cn=freenit,dc=service,dc=ldap
