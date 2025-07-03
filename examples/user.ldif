@@ -6,6 +6,7 @@ sn: LAST
 uidNumber: 10000
 gidNumber: 10000
 homeDirectory: /var/mail/domains/DOMAIN/USER
+loginShell: /bin/sh
 mail: USER@DOMAIN
 userClass: enabled
 

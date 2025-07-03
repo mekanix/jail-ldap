@@ -32,6 +32,7 @@ sn: User
 uidNumber: 10000
 gidNumber: 10000
 homeDirectory: /var/mail/domains/DOMAIN/admin
+loginShell: /bin/sh
 mail: admin@DOMAIN
 userClass: active
 userClass: admin
