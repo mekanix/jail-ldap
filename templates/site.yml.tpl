@@ -6,4 +6,5 @@
   hosts: SERVICE
   roles:
     - onelove-roles.freebsd-common
-    - ldap
+    - onelove-roles.freebsd-repo
+    - onelove-roles.freebsd-ldap

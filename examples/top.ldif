@@ -52,6 +52,12 @@ cn: Freenit
 sn: Service
 description: Freenit
 
+dn: cn=sasl,dc=service,dc=ldap
+objectClass: person
+cn: SASL
+sn: Service
+description: SASL
+
 dn: cn=admin,dc=group,dc=ldap
 objectClass: groupOfUniqueNames
 cn: admin
